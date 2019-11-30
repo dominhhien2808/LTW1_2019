@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th10 30, 2019 lúc 10:13 AM
--- Phiên bản máy phục vụ: 10.1.21-MariaDB
--- Phiên bản PHP: 5.6.30
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 30, 2019 lúc 01:03 PM
+-- Phiên bản máy phục vụ: 10.4.8-MariaDB
+-- Phiên bản PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,7 +32,7 @@ CREATE TABLE `active_account` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `secretac` varchar(255) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -59,18 +59,12 @@ INSERT INTO `active_account` (`id`, `userId`, `secretac`, `createdAt`) VALUES
 (17, 29, 'rl0FZzSQJw', '2018-12-27 20:42:43'),
 (18, 29, 'oJ0WwlGyoO', '2018-12-27 20:48:52'),
 (19, 29, '4znctaPika', '2018-12-27 20:50:20'),
-(20, 32, 'aewR2xjKkp', '2019-11-03 16:56:36'),
-(21, 33, 'YSH8ZKyjaC', '2019-11-03 16:58:51'),
-(22, 34, 'Llp7sxd7ix', '2019-11-03 16:59:58'),
-(23, 34, 'JwcvXgOm8m', '2019-11-03 17:01:57'),
-(24, 37, 'zcfaHfg1Wo', '2019-11-03 17:10:10'),
-(25, 39, '8OPMbGUsJr', '2019-11-03 17:13:04'),
-(26, 39, 'k32f0YTt8I', '2019-11-03 17:13:26'),
-(27, 39, 'xNxYcir1Yt', '2019-11-03 17:15:17'),
-(28, 42, '2KMDJAWKkc', '2019-11-29 10:18:51'),
-(29, 43, 'CA4FUXRIYp', '2019-11-29 10:33:49'),
-(30, 44, 'NtiygKmQrg', '2019-11-29 10:42:27'),
-(31, 44, 'meUrirc5hg', '2019-11-29 10:51:23');
+(20, 32, 'RWYHMCaE1K', '2019-11-29 15:51:13'),
+(21, 33, '7tsIIgKbQC', '2019-11-29 15:59:31'),
+(22, 33, 'zMjSgzBV4X', '2019-11-29 16:08:33'),
+(23, 35, 'J6puudsfrN', '2019-11-30 11:26:39'),
+(24, 36, '7Cu3EjHRKk', '2019-11-30 18:56:01'),
+(25, 36, '2lW3bLrPsz', '2019-11-30 18:56:05');
 
 -- --------------------------------------------------------
 
@@ -83,7 +77,7 @@ CREATE TABLE `comment` (
   `userId` int(11) NOT NULL,
   `postId` int(11) NOT NULL,
   `comment` varchar(255) NOT NULL,
-  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `create_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -95,7 +89,7 @@ CREATE TABLE `comment` (
 CREATE TABLE `follow` (
   `users` int(11) NOT NULL,
   `usersfollow` int(11) NOT NULL,
-  `createAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `createAt` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -114,7 +108,7 @@ INSERT INTO `follow` (`users`, `usersfollow`, `createAt`) VALUES
 CREATE TABLE `friends` (
   `user1Id` int(11) NOT NULL,
   `user2Id` int(11) NOT NULL,
-  `createAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `createAt` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -134,7 +128,7 @@ CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `content` varchar(255) NOT NULL,
   `userId` int(11) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -155,14 +149,12 @@ INSERT INTO `posts` (`id`, `content`, `userId`, `createdAt`, `count`) VALUES
 (10, '456', 28, '2018-12-27 16:54:23', 0),
 (11, '123', 28, '2018-12-27 17:08:41', 0),
 (12, 'khoi mat lol', 28, '2018-12-27 17:09:52', 0),
-(13, 'khoi mat cac', 28, '2018-12-27 17:10:07', -2),
+(13, 'khoi mat cac', 28, '2018-12-27 17:10:07', 0),
 (14, 'suc vat khoi', 28, '2018-12-27 17:10:18', 1),
-(15, '123ddd  ', 28, '2018-12-27 17:55:17', 2),
+(15, '123ddd  ', 28, '2018-12-27 17:55:17', 0),
 (16, '123 456', 28, '2018-12-27 18:26:24', 1),
 (17, 'Tôi yêu em', 28, '2018-12-27 20:21:00', 6),
-(18, '', 39, '2019-11-03 18:00:32', 5),
-(19, 'khong co gi\r\n\r\n\r\n', 39, '2019-11-03 18:00:44', 61),
-(20, '', 39, '2019-11-22 18:40:51', 1);
+(18, 'Bài đăng đầu tiên', 35, '2019-11-30 11:31:12', 3);
 
 -- --------------------------------------------------------
 
@@ -174,7 +166,7 @@ CREATE TABLE `reset_password` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `secret` varchar(255) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `used` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -198,9 +190,7 @@ INSERT INTO `reset_password` (`id`, `userId`, `secret`, `createdAt`, `used`) VAL
 (13, 25, 'OxEweOORY7', '2018-12-14 10:37:08', 1),
 (14, 25, 'Begjf2jE2Z', '2018-12-15 11:09:54', 1),
 (15, 28, 'fh9i1EAFK5', '2018-12-15 11:23:13', 1),
-(16, 29, '6lyAH9k3Ow', '2018-12-27 20:51:07', 1),
-(17, 39, 'szy89i47Ov', '2019-11-22 18:20:50', 0),
-(18, 39, 'kCBGtUwoEE', '2019-11-22 18:25:41', 0);
+(16, 29, '6lyAH9k3Ow', '2018-12-27 20:51:07', 1);
 
 -- --------------------------------------------------------
 
@@ -224,9 +214,9 @@ INSERT INTO `users` (`id`, `email`, `password`, `fullname`, `used`) VALUES
 (27, 'myforrever22@gmail.com', '$2y$10$flHNWamUu5ld.aSqpfS1a..7lTHIP1jCHyWclNNvBzU4BIZv4t5K6', 'Kim', 1),
 (28, 'myforrever21@gmail.com', '$2y$10$l9wKWZfLTQU4d7s52V.5p.lL/hBpiwtuBDIcEZ1k0FOXsClE6QhCO', 'Kim JiSoo', 1),
 (29, 'myforrever24@gmail.com', '$2y$10$Ibb4R6W/f.M2P1mq1ccN4.Jv2zqmWDK9A0rvW9RTwlvTsZ1iLyU7e', 'Kim Jennie', 1),
-(43, 'hienkoiu0123@gmail.com', '$2y$10$umOTA9KtRFg.Z8InCBpPjOKPutqdhhtobGL5clTnsH0znXaRV6/6W', 'wide', 0),
-(44, 'widebusinessman@gmail.com', '$2y$10$ReYZeUbW.aXLQiySEdzZwuTq7Tsa9XlZyeKzmoJnOuCUNUG4oYOFy', 'hiển', 1),
-(45, 'widebusinessman@gmail.com', '$2y$10$.zKEJtFr8tGZ8/mgVCbkaufHPCz4GyzfpRwN77bBBiNtUP3fKN5vK', 'hiển', 0);
+(30, 'myforrever24@gmail.com', '$2y$10$Tkq.xA08l86SIMho3n7ppuG42gupcjVz3cRAyUKZlPOOCZn/IeFgK', 'ChaeYoung', 0),
+(31, 'myforrever24@gmail.com', '$2y$10$GPU/4xQEJJjoFSxr4w0V4Oz8ueXXh5x5uG0u5hVWFoNfImOFouuoO', 'Lisa', 0),
+(36, 'cnghe22@gmail.com', '$2y$10$rk3v0U2Q3POouM29p.eQ3.VQwjEdR/t9WPfPp1pPX5FTE4WFRLzZS', 'phước nguyễn', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -282,27 +272,32 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `active_account`
 --
 ALTER TABLE `active_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
 --
 -- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
 -- AUTO_INCREMENT cho bảng `reset_password`
 --
 ALTER TABLE `reset_password`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
