@@ -43,7 +43,7 @@
 		$id = $row['id'];
 
         echo "<tr>";
-        echo" <a href='google.com'> <td> $ten </td> </a>";
+        echo" <td> <a href='profile.php?id=$id'> $ten </a> </td>";
 		echo"<td> $email </td> ";
 		echo" <td> $id </td>";
         echo "</tr>";

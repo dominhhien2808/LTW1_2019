@@ -77,8 +77,7 @@
         function search(){
             var input = document.querySelector("#txt_value").value;
             if(input){
-                    var root ="/demosocial";
-                    var link = root + "/search_result.php?keyword="+input;
+                    var link = "search_result.php?keyword="+input;
                     window.location.href =link;
             }
             else{

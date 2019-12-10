@@ -133,8 +133,8 @@ require 'vendor/autoload.php';
 	function findRelationship($user1Id,$user2Id)
 	{
 		global $db;
-		$stmt = $db -> prepare("SELECT * FROM friends WHERE user1Id=? OR user2Id=? OR user1Id=? OR user2Id=?");
-		$stmt ->execute(array($user1Id,$user2Id,$user2Id,$user1Id));
+		$stmt = $db -> prepare("SELECT * FROM friends WHERE user1Id=? and user2Id=?");
+		$stmt ->execute(array($user1Id,$user2Id));
 		$friends=$stmt -> fetchAll(PDO::FETCH_ASSOC);
 		return  $friends;
 	}
@@ -237,4 +237,16 @@ require 'vendor/autoload.php';
 		$stmt = $db->prepare("Update posts set count = ? where id = ?");
 		$stmt->execute(array($count,$id));
 		$stmt -> fetchAll(PDO::FETCH_ASSOC);
+	}
+	function removeFriendRequest($id1, $id2)
+	{
+		global $db;
+		$stmt = $db->prepare("DELETE from friends where (user1id = ? and user2id = ? ) or (user2id = ? and user1id = ? )");
+		$stmt->execute(array($id1, $id2, $id1, $id2));
+	}
+	function sendFriendRequest($id1, $id2)
+	{
+		global $db;
+		$stmt = $db->prepare("INSERT into friends (user1id, user2id) values( ? , ? )");
+		$stmt->execute(array($id1, $id2));
 	}

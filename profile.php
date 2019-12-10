@@ -11,26 +11,8 @@ if (!$currentUser) {
 }
 
 
-$relationship = findRelationship($currentUser['id'], $user['id']);
-// var_dump($relationship);
-
-// nếu là bạn
-$isFriend = count($relationship) === 2;
-
-
-
-//chưa follow
-// $noFollow=count($relationshipfollow)===0;
-
-//chưa phải là bạn
-$noRelationship = count($relationship) === 0;
-
-//đang xảy ra 1 yêu cầu nào đó
-if (count($relationship) === 1) {
-    //đang gửi yêu cầu kết bạn
-    $isRequesting = $relationship[0]['user1Id'] === $currentUser['id'];// kiểm tra có phải cùng 1 người
-}
-
+$isFollowing = findRelationship($currentUser['id'], $user['id']);
+$isFollowed = findRelationship($user['id'], $currentUser['id']);
 
 ?>
 
@@ -39,46 +21,39 @@ if (count($relationship) === 1) {
     <link rel="stylesheet" href="style/style-profile.css">
 </head>
 
-<div class="information">
-    <div class="img-personal">
-        <div class="img">
-            <img src="img/27.jpg" alt="Ảnh đại diện">
+<div class="">
+    <div class="">
+        <div class="">
+            <img src="./img/<?php echo $user['id']; ?>.jpg" alt="Ảnh đại diện">
         </div>
         <div class="titleName">
             <h2><?php echo $user['fullname']; ?></h2>
         </div>
     </div>
-    <?php if ($user['id'] !== $currentUser['id']) : ?>
-    <div class="menu-btn">
-        <form action="friend.php" method="POST">
-            <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
-            <?php if ($isFriend) : ?> 
-            <input type="submit" name="action" value="Xóa bạn bè" class="btn-function">
-            <?php elseif ($noRelationship) : ?> 
-            <input type="submit" name="action" value="Kết bạn" class="btn-function">
-            <?php else : ?>
-            <?php if (!$isRequesting) : ?>
-            <input type="submit" name="action" value="Đồng ý" class="btn-function">
+        <?php if ($isFollowing && $isFollowed): ?>
+            <form method="POST" action="remove_friend.php">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                    <button type="submit" class="btn btn_primary">Xóa bạn</button>
+                </form>
+        <?php else: ?>
+            <?php if($isFollowing && !$isFollowed): ?>
+                <form method="POST" action="remove_friend.php">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                    <button type="submit" class="btn btn_primary">Hủy yêu cầu kết bạn</button>
+                </form>
             <?php endif; ?>
-            <input type="submit" name="action" value="Từ chối" class="btn-function">
+            <?php if(!$isFollowing && $isFollowed): ?>
+                <form method="POST" action="add_friend.php">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                    <button type="submit" class="btn btn_primary">Chấp nhận yêu cầu kết bạn</button>
+                </form>
             <?php endif; ?>
-        </form>
-        <!-- follow -->
-        <?php
-
-        $isFollowed = isUserFollowed($_GET['id']);
-        ?>
-        <?php if ($user['id'] !== $currentUser['id']) : ?> 
-        <form action = "followHandler.php" method = "POST">
-            <input type = "hidden" name = "idfollwed" value = "<?= $user["id"] ?>">
-            <input type = "hidden" name = "idCurrent" value = "<?= $currentUser["id"] ?>">
-        <?php if ($isFollowed) : ?> 
-            <input type="submit" name="action" value="Hủy theo dõi" class="btn-function"  id="unfollow">
-        <?php else : ?>
-            <input type="submit" name="action" value="Theo dõi" class="btn-function" id="follow">
-        <?php endif; ?> 
-        <?php endif; ?> 
-        </form>
+            <?php if(!$isFollowing && !$isFollowed): ?>
+                <form method="POST" action="add_friend.php">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                    <button type="submit" class="btn btn_primary">Gửi yêu cầu kết bạn</button>
+                </form>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
 </div>
