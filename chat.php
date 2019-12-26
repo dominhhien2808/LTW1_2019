@@ -11,16 +11,17 @@
 
 ?>
 <?php include 'header.php'; ?>
-<div class="main-chat">     
+<div class="main-header">
+            <h1><i class="fa fa-commenting"></i> Messenger</h1>
+        </div><!-- div.main-header -->
+        <div class="main-chat">     
             </div><!-- div.main-chat -->
             <div class="box-chat">
                     <form method="POST" id="formSendMsg" onsubmit="return false;">
                             <input type="text" placeholder="Nhập nội dung tin nhắn ...">
                     </form><!-- form#formSendMsg -->
             </div>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</div>
 <script>
 
 // Hàm gửi tin nhắn
@@ -30,12 +31,13 @@ function sendMsg() {
  
     // Gửi dữ liệu
     $.ajax({
-        url: 'sendmsg.php', // đường dẫn file xử lý
-        type: 'POST', // phương thức
+        url: 'send_msg.php', // đường dẫn file xử lý
+        type: 'GET', // phương thức
         // dữ liệu
         data: {
             body_msg: $body_msg
                     // thực thi khi gửi dữ liệu thành công
+            
         }, success: function () {
             $('#formSendMsg input[type="text"]').val(''); // làm trống thanh trò chuyện
         }
@@ -57,7 +59,4 @@ $('#formSendMsg input[type="text"]').click(function (e) {
     window.scrollBy(0, $(document).height());
 });
 
-$.ajaxSetup({cache:false});
-// Thiết lập thời gian thực vòng lặp 1 giây
-setInterval(function() {$('.main-chat').load('msglog.php');}, 1000);
 </script>

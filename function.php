@@ -250,9 +250,10 @@ require 'vendor/autoload.php';
 		$stmt = $db->prepare("INSERT into friends (user1id, user2id) values( ? , ? )");
 		$stmt->execute(array($id1, $id2));
 	}
-	function SendMessage($body_msg, $user1, $user2, $date_current)
+	function SendMessage($body_msg, $user1, $user2)
     {
 		global $db;
-		$stmt = $db -> prepare("INSERT INTO messages VALUES (?, ?, ?, ?, ?)");
-		$stmt ->execute(array('', $body_msg, $user1, $user2, $date_current));
+		$stmt = $db->prepare("INSERT INTO messages VALUES ( ? , ? , ? , ? , ? )");
+		$dt = new DateTime();
+		$stmt->execute(array('', $body_msg, $user1, $user2, $dt->format('Y-m-d H:i:s')));
 	}
