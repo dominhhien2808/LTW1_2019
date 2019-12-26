@@ -31,11 +31,12 @@ function sendMsg() {
  
     // Gửi dữ liệu
     $.ajax({
-        url: 'send_msg.php', // đường dẫn file xử lý
+        url: 'send_msg.php?id=<?php echo $_GET['id'] ?>', // đường dẫn file xử lý
         type: 'GET', // phương thức
         // dữ liệu
         data: {
-            body_msg: $body_msg
+            body_msg: $body_msg,
+
                     // thực thi khi gửi dữ liệu thành công
             
         }, success: function () {
@@ -57,9 +58,10 @@ $('#formSendMsg input[type="text"]').keypress(function () {
 $('#formSendMsg input[type="text"]').click(function (e) {
     // Kéo hết thanh cuộn trình duyệt đến cuối
     window.scrollBy(0, $(document).height());
+    alert('msglog.php?id=' . $_POST['id'] );
 });
 
 $.ajaxSetup({cache:false});
 // Thiết lập thời gian thực vòng lặp 1 giây
-setInterval(function() {$('.main-chat').load('msglog.php');}, 1000);
+setInterval(function() {$('.main-chat').load('msglog.php?id=<?php echo $_GET['id'] ?>');}, 1000);
 </script>

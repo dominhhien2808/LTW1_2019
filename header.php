@@ -44,7 +44,7 @@
                         <a href="listfriend.php?id=<?php echo $currentUser['id']; ?>" style="color:white;"><i class="fas fa-user-friends" id="listfriend"></i></a>
                     </div>
                     <div class="message">
-                        <a href="chat.php"><i class="fab fa-facebook-messenger"></i></a>
+                        <a href="listchat.php"><i class="fab fa-facebook-messenger"></i></a>
                     </div>
                     <div class="bell">
                         <i class="fas fa-bell"></i>

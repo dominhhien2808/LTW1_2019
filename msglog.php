@@ -11,11 +11,7 @@
  
 
 // Lấy dữ liệu từ table messages theo thứ tự id_msg tăng dần
-$user2 = 39;
-    if ($currentUser['id'] == 39)
-    {
-        $user2 = 36;
-    }
+$user2 = $_GET['id'];
 $result = GetMessage($currentUser['id'], $user2);
 if ($result)
 {
@@ -39,7 +35,7 @@ if ($result)
         }
         // Ngược lại người gửi không phải là $user thì hiển thị khung tin nhắn màu xám
         else {
-            $user_gest = findUserById($row['user_to']);
+            $user_gest = findUserById($row['user_from']);
             echo '  <div class="msg">
                             <p>' . $row['body'] . '</p>
                             <div class="info-msg">

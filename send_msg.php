@@ -12,13 +12,9 @@ $body_msg = $_GET['body_msg'];
 // Xử lý chuỗi $body_msg
 $body_msg = htmlentities($body_msg);
 // Nếu $body_msg khác rỗng
+$user2 = $_GET['id'];
 if ($body_msg != '') {
     // Thực thi gửi tin nhắn
-    $user2 = 39;
-    if ($currentUser['id'] == 39)
-    {
-        $user2 = 36;
-    }
     SendMessage($body_msg, $currentUser['id'], $user2);
 }
 ?>
