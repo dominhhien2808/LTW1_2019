@@ -38,16 +38,18 @@
     echo "</tr>";
         $i = 0;
         foreach ($resultSet as $row) {
-        $ten = $row['fullname'];
-        $email = $row['email'];
-		$id = $row['id'];
-
-        echo "<tr>";
-        echo" <td> <a href='profile.php?id=$id'> $ten </a> </td>";
-		echo"<td> $email </td> ";
-		echo" <td> $id </td>";
-        echo "</tr>";
-        $i++;
+			if ($currentUser['id'] != $row['id'])
+			{
+				$ten = $row['fullname'];
+        	$email = $row['email'];
+			$id = $row['id'];
+			echo "<tr>";
+			echo" <td> <a href='profile.php?id=$id'> $ten </a> </td>";
+			echo"<td> $email </td> ";
+			echo" <td> $id </td>";
+			echo "</tr>";
+			$i++;
+			}
         }
      echo "</table> "   ;
 if($i == 0) {echo '<div> tìm kiếm không thành công </div>';}

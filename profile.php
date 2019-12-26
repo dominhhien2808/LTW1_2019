@@ -32,9 +32,12 @@ if (count($relationship) === 1) {
     $isRequesting = $relationship[0]['user1Id'] === $currentUser['id'];// kiểm tra có phải cùng 1 người
 }
 
+$isFollowing = findRelationship($currentUser['id'], $user['id']);
+$isFollowed = findRelationship($user['id'], $currentUser['id']);
 
 ?>
 
+<!-- Kết bạn -->
 <?php include 'header.php'; ?>
 <head>
     <link rel="stylesheet" href="style/style-profile.css">
@@ -45,28 +48,34 @@ if (count($relationship) === 1) {
         <div class="img">
             <img src="img/27.jpg" alt="Ảnh đại diện">
         </div>
-        <div class="titleName">
-            <h2><?php echo $user['fullname']; ?></h2>
-        </div>
     </div>
-    <?php if ($user['id'] !== $currentUser['id']) : ?>
-    <div class="menu-btn">
-        <form action="friend.php" method="POST">
-            <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
-            <?php if ($isFriend) : ?> 
-            <input type="submit" name="action" value="Xóa bạn bè" class="btn-function">
-            <?php elseif ($noRelationship) : ?> 
-            <input type="submit" name="action" value="Kết bạn" class="btn-function">
-            <?php else : ?>
-            <?php if (!$isRequesting) : ?>
-            <input type="submit" name="action" value="Đồng ý" class="btn-function">
+    <?php if ($isFollowing && $isFollowed): ?>
+            <form method="POST" action="remove_friend.php">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                    <button type="submit" class="btn-function">Xóa bạn</button>
+                </form>
+        <?php else: ?>
+            <?php if($isFollowing && !$isFollowed): ?>
+                <form method="POST" action="remove_friend.php">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                    <button type="submit" class="btn-function">Hủy yêu cầu kết bạn</button>
+                </form>
+                <?php endif; ?>
+            <?php if(!$isFollowing && $isFollowed): ?>
+                <form method="POST" action="add_friend.php">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                    <button type="submit" class="btn-function">Chấp nhận yêu cầu kết bạn</button>
+                </form>
             <?php endif; ?>
-            <input type="submit" name="action" value="Từ chối" class="btn-function">
+            <?php if($user['id'] !== $currentUser['id'] && !$isFollowing && !$isFollowed): ?>
+                <form method="POST" action="add_friend.php">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                    <button type="submit" class="btn-function">Gửi yêu cầu kết bạn</button>
+                </form>
             <?php endif; ?>
-        </form>
         <!-- follow -->
         <?php
-
+     
         $isFollowed = isUserFollowed($_GET['id']);
         ?>
         <?php if ($user['id'] !== $currentUser['id']) : ?> 
