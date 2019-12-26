@@ -14,6 +14,11 @@ $body_msg = htmlentities($body_msg);
 // Nếu $body_msg khác rỗng
 if ($body_msg != '') {
     // Thực thi gửi tin nhắn
-    SendMessage($body_msg, $currentUser['id'], 12);
+    $user2 = 39;
+    if ($currentUser['id'] == 39)
+    {
+        $user2 = 36;
+    }
+    SendMessage($body_msg, $currentUser['id'], $user2);
 }
 ?>

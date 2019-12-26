@@ -257,3 +257,12 @@ require 'vendor/autoload.php';
 		$dt = new DateTime();
 		$stmt->execute(array('', $body_msg, $user1, $user2, $dt->format('Y-m-d H:i:s')));
 	}
+
+	function GetMessage($user1, $user2)
+	{	
+		global $db;
+		$stmt = $db -> prepare("SELECT * FROM messages where (user_from = ? and user_to = ? ) or (user_from = ? and user_to = ? )  ORDER BY id_msg ASC");
+		$stmt ->execute(array($user1, $user2, $user2, $user1));
+		$messages = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+		return $messages;
+	}
