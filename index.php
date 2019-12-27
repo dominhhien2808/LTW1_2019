@@ -32,8 +32,8 @@ else $phanquyen = 'Chỉ mình tôi';
 if(($post['userId'] == $currentUser['id']) || ($isFollow && $quyen == 1) || ($isFollowing && $isFollowed && $quyen != 3)) :?>
 <div style="border:1px solid black" class="card">
   <div class="card-body">
-  	<h5 class="card-title">
-			<img style="width: 100px; height: 100px;" src="./img/<?php echo $currentUser['id']; ?>.jpg">
+  	 	<h5 class="card-title">
+			<img style="width: 100px; height: 100px;" src="./img/<?php echo $post['userId']; ?>.jpg">
 			<?php echo $post['fullName']; ?>
 		</h5>
 		<h6 class="card-subtitle mb-2">Chế độ: <?php echo $phanquyen; ?></h6>
