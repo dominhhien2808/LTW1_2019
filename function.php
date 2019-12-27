@@ -275,11 +275,45 @@ require 'vendor/autoload.php';
 		$stmt->execute(array('', $body_msg, $user1, $user2, $dt->format('Y-m-d H:i:s')));
 	}
 
-	function GetMessage($user1, $user2)
+	function GetMessage($user1, $user2, $idmsg)
 	{	
 		global $db;
-		$stmt = $db -> prepare("SELECT * FROM messages where (user_from = ? and user_to = ? ) or (user_from = ? and user_to = ? )  ORDER BY id_msg ASC");
-		$stmt ->execute(array($user1, $user2, $user2, $user1));
+		$stmt = $db -> prepare("SELECT * FROM messages where ((user_from = ? and user_to = ? ) or (user_from = ? and user_to = ? )) and id_msg >= ?  ORDER BY id_msg ASC");
+		$stmt ->execute(array($user1, $user2, $user2, $user1, $idmsg));
 		$messages = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 		return $messages;
+	}
+
+	function LastIdMsg($id1, $id2)
+	{
+		global $db;
+		$stmt = $db -> prepare("SELECT * FROM messages 
+		where (user_from = ? and user_to = ? ) or (user_from = ? and user_to = ? )  
+		ORDER BY id_msg DESC");
+		$stmt ->execute(array($id1, $id2, $id2, $id1));
+		$stmt = $stmt -> fetch(PDO::FETCH_ASSOC);
+		$lastid = $stmt['id_msg'];
+		return $lastid;
+	}
+
+	function CheckChatBox($id1, $id2)
+	{
+		global $db;
+		$stmt = $db -> prepare("SELECT * FROM chatbox where Iduser1 = ? and Iduser2 = ?");
+		$stmt ->execute(array($id1, $id2));
+		$stmt = $stmt -> fetch(PDO::FETCH_ASSOC);
+		return $stmt;
+	}
+
+	function InsertChatBox($id1, $id2, $idmsg)
+	{
+		global $db;
+		$stmt = $db -> prepare("INSERT INTO chatbox Values(? , ?, ?)");
+		$stmt -> execute(array($id1, $id2, $idmsg));
+	}
+	function RemoveChatBox($id1, $id2)
+	{
+		global $db;
+		$stmt = $db->prepare("DELETE from chatbox where Iduser1 = ? and Iduser2 = ?");
+		$stmt->execute(array($id1, $id2));
 	}

@@ -20,7 +20,8 @@
 			ORDER BY id_msg DESC");
     	$stmt->setFetchMode(PDO::FETCH_ASSOC);
     	$stmt->execute(array($currentUser['id'], $currentUser['id']));
-    	$resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     echo "<table width = '600' boder ='5' style='margin-top:40px'> ";
     echo " <h1 style='margin-top:40px'> Danh sách Chat của bạn </h1>";
     echo "<tr>";
@@ -28,6 +29,7 @@
 	echo"<td><u> Email: </u> </td> ";
 	echo"<td><u> id: </u> </td> ";
 	echo"<td><u> Ngày: </u> </td> ";
+	echo"<td><u></u> </td> ";
     echo "</tr>";
         $i = 0;
         foreach ($resultSet as $mes) {
@@ -36,17 +38,28 @@
 			{
 				$row = findUserByID($mes['user_to']);
 			}
+			$user2 = $row['id'];
+			$kt = CheckChatBox($currentUser['id'], $user2);
+			if($kt)
+			{
+				$ten = $row['fullname'];
+				$email = $row['email'];
+				$id = $row['id'];
+				echo "<tr>";
+				echo" <td> <a href='chat.php?id=$id'> $ten </a> </td>";
+				echo"<td> $email </td> ";
+				echo" <td> $id </td>";
+				echo"<td>"; echo $mes['date_sent']; echo"</td>";
+				echo '<td>
+				<form method="POST" action="remove_mess.php">
+				<input type="hidden" name="id" value=';echo $row["id"];echo'>
+				<button type="submit" class="btn-function">Xóa</button>
+				</form> 
+				</td>';
+				echo "</tr>";
 				
-			$ten = $row['fullname'];
-        	$email = $row['email'];
-			$id = $row['id'];
-			echo "<tr>";
-			echo" <td> <a href='chat.php?id=$id'> $ten </a> </td>";
-			echo"<td> $email </td> ";
-			echo" <td> $id </td>";
-			echo"<td>"; echo $mes['date_sent']; echo"</td>";
-			echo "</tr>";
-			$i++;
+				$i++;
+			}
         }
      echo "</table> "   ;
 

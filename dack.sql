@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 27, 2019 lúc 12:46 PM
--- Phiên bản máy phục vụ: 10.1.38-MariaDB
--- Phiên bản PHP: 7.3.3
+-- Thời gian đã tạo: Th12 27, 2019 lúc 03:41 PM
+-- Phiên bản máy phục vụ: 10.4.10-MariaDB
+-- Phiên bản PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,7 +32,7 @@ CREATE TABLE `active_account` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `secretac` varchar(255) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -68,7 +68,27 @@ INSERT INTO `active_account` (`id`, `userId`, `secretac`, `createdAt`) VALUES
 (26, 38, 'XOvbAUVNxg', '2019-12-26 13:55:00'),
 (27, 39, 'weW1voyxrD', '2019-12-26 13:59:06'),
 (28, 39, 'Mnj3O7eOzh', '2019-12-26 14:06:01'),
-(29, 41, 'JRsCyXbApy', '2019-12-27 17:04:15');
+(29, 41, 'jXzVJEdTG4', '2019-12-27 15:49:18');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chatbox`
+--
+
+CREATE TABLE `chatbox` (
+  `Iduser1` int(11) NOT NULL,
+  `Iduser2` int(11) NOT NULL,
+  `idmsg` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `chatbox`
+--
+
+INSERT INTO `chatbox` (`Iduser1`, `Iduser2`, `idmsg`) VALUES
+(36, 39, 73),
+(39, 36, 20);
 
 -- --------------------------------------------------------
 
@@ -81,7 +101,7 @@ CREATE TABLE `comment` (
   `userId` int(11) NOT NULL,
   `postId` int(11) NOT NULL,
   `comment` varchar(255) NOT NULL,
-  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `create_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -93,7 +113,7 @@ CREATE TABLE `comment` (
 CREATE TABLE `follow` (
   `users` int(11) NOT NULL,
   `usersfollow` int(11) NOT NULL,
-  `createAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `createAt` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -101,7 +121,8 @@ CREATE TABLE `follow` (
 --
 
 INSERT INTO `follow` (`users`, `usersfollow`, `createAt`) VALUES
-(28, 27, '2018-12-27 20:40:55');
+(28, 27, '2018-12-27 20:40:55'),
+(41, 36, '2019-12-27 15:49:54');
 
 -- --------------------------------------------------------
 
@@ -112,7 +133,7 @@ INSERT INTO `follow` (`users`, `usersfollow`, `createAt`) VALUES
 CREATE TABLE `friends` (
   `user1Id` int(11) NOT NULL,
   `user2Id` int(11) NOT NULL,
-  `createAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `createAt` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -123,7 +144,9 @@ INSERT INTO `friends` (`user1Id`, `user2Id`, `createAt`) VALUES
 (28, 27, '2018-12-27 20:40:48'),
 (36, 28, '2019-12-26 13:51:43'),
 (39, 36, '2019-12-27 13:39:06'),
-(36, 39, '2019-12-27 13:38:25');
+(36, 39, '2019-12-27 13:38:25'),
+(39, 41, '2019-12-27 15:50:37'),
+(41, 39, '2019-12-27 15:50:44');
 
 -- --------------------------------------------------------
 
@@ -144,8 +167,6 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id_msg`, `body`, `user_from`, `user_to`, `date_sent`) VALUES
-(19, 'dasdasd', 36, 12, '0000-00-00 00:00:00'),
-(20, 'dsadsadaaaaaaaaaaaaaaaaaa', 36, 12, '0000-00-00 00:00:00'),
 (42, 'Hello, How are you?', 36, 39, '2019-12-26 14:50:35'),
 (43, 'I\'m fine. Thank you and you?', 39, 36, '2019-12-26 14:50:53'),
 (44, 'Very Good!', 36, 39, '2019-12-26 14:51:03'),
@@ -162,7 +183,22 @@ INSERT INTO `messages` (`id_msg`, `body`, `user_from`, `user_to`, `date_sent`) V
 (55, 'ditj me m', 39, 36, '2019-12-26 16:33:25'),
 (56, 'thang mat dai', 39, 36, '2019-12-26 16:33:36'),
 (57, 'xong rồi n&egrave;', 39, 36, '2019-12-27 06:26:42'),
-(58, 'okeeeeeeeeeeeeee', 36, 39, '2019-12-27 06:26:48');
+(58, 'okeeeeeeeeeeeeee', 36, 39, '2019-12-27 06:26:48'),
+(59, 'ch&agrave;o bạn', 36, 41, '2019-12-27 09:51:43'),
+(60, 'minhf nef ban oi', 36, 39, '2019-12-27 09:55:17'),
+(61, 'haha', 36, 41, '2019-12-27 09:55:26'),
+(62, 'sadsadsad', 36, 39, '2019-12-27 14:18:27'),
+(63, 'dsadsad', 36, 39, '2019-12-27 14:22:37'),
+(64, 'dasdasdas', 36, 39, '2019-12-27 14:23:14'),
+(65, 'sadasdsa', 36, 39, '2019-12-27 14:31:40'),
+(66, 'dasdasd', 36, 39, '2019-12-27 14:33:09'),
+(67, '&ecirc;, sao m x&oacute;a tin nhắn của t', 39, 36, '2019-12-27 15:20:14'),
+(68, 'm c&oacute; nghe t kh&ocirc;ng', 36, 39, '2019-12-27 15:36:36'),
+(69, 'm c&oacute; nghe t kh&ocirc;ng', 36, 39, '2019-12-27 15:37:06'),
+(70, 'đ&acirc;sdasdsd', 36, 39, '2019-12-27 15:39:00'),
+(71, 'abc', 36, 39, '2019-12-27 15:39:28'),
+(72, 'đ&acirc;sdasdsa', 36, 39, '2019-12-27 15:40:25'),
+(73, 'm c&oacute; vui kh&ocirc;ng', 36, 39, '2019-12-27 15:40:38');
 
 -- --------------------------------------------------------
 
@@ -174,7 +210,7 @@ CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `content` varchar(255) NOT NULL,
   `userId` int(11) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `count` int(11) NOT NULL,
   `quyen` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -188,11 +224,8 @@ INSERT INTO `posts` (`id`, `content`, `userId`, `createdAt`, `count`, `quyen`) V
 (23, 'dasdasdsd', 36, '2019-12-27 13:15:03', 0, 2),
 (24, '', 36, '2019-12-27 13:15:16', 0, 3),
 (25, 'dasdasdsad', 36, '2019-12-27 13:38:06', 0, 3),
-(26, 'xin chào các bạn', 41, '2019-12-27 17:07:10', 0, 1),
-(27, 'xin chào các bạn trẻ', 41, '2019-12-27 17:07:38', 0, 2),
-(28, 'Nhìn cái Gì hả bạn', 41, '2019-12-27 17:15:16', 0, 1),
-(29, 'có lẽ nào em vội quên tôi\r\n', 41, '2019-12-27 17:15:30', 0, 1),
-(30, 'ngày xưa em và tôi', 41, '2019-12-27 17:15:55', 0, 1);
+(26, 'dsadasdawdxzc', 39, '2019-12-27 13:52:03', 1, 1),
+(27, 'tôi yêu em!', 36, '2019-12-27 19:41:51', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -204,7 +237,7 @@ CREATE TABLE `reset_password` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `secret` varchar(255) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `used` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -241,21 +274,22 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `fullname` varchar(255) NOT NULL,
-  `used` int(11) NOT NULL,
-  `born` date NOT NULL,
-  `degree` text NOT NULL,
-  `detail` text NOT NULL
+  `used` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`, `fullname`, `used`, `born`, `degree`, `detail`) VALUES
-(31, 'myforrever24@gmail.com', '$2y$10$GPU/4xQEJJjoFSxr4w0V4Oz8ueXXh5x5uG0u5hVWFoNfImOFouuoO', 'Lisa', 0, '0000-00-00', '', ''),
-(36, 'cnghe22@gmail.com', '$2y$10$rk3v0U2Q3POouM29p.eQ3.VQwjEdR/t9WPfPp1pPX5FTE4WFRLzZS', 'phước nguyễn', 1, '1999-12-22', 'associate', 'là người của công chúng'),
-(39, 'cnghe33@gmail.com', '$2y$10$7i8fEkyOUProuNt.QN4JFOWl5f78HDYY5WL.wywRYzb7XJRODdl32', 'Phuoc Nguyen 2', 1, '1999-10-20', 'associate', 'là người có tinh thần cầu tiến'),
-(41, 'widebusinessman@gmail.com', '$2y$10$llqwb9kVRZtNJ.1arPYdSugEVI6aa8bTlI7ZLBdxGorV5Msab5Gu2', 'Minh Hiển', 1, '1998-04-07', 'associate', 'là người ham học hỏi');
+INSERT INTO `users` (`id`, `email`, `password`, `fullname`, `used`) VALUES
+(27, 'myforrever22@gmail.com', '$2y$10$flHNWamUu5ld.aSqpfS1a..7lTHIP1jCHyWclNNvBzU4BIZv4t5K6', 'Kim', 1),
+(28, 'myforrever21@gmail.com', '$2y$10$l9wKWZfLTQU4d7s52V.5p.lL/hBpiwtuBDIcEZ1k0FOXsClE6QhCO', 'Kim JiSoo', 1),
+(29, 'myforrever24@gmail.com', '$2y$10$Ibb4R6W/f.M2P1mq1ccN4.Jv2zqmWDK9A0rvW9RTwlvTsZ1iLyU7e', 'Kim Jennie', 1),
+(30, 'myforrever24@gmail.com', '$2y$10$Tkq.xA08l86SIMho3n7ppuG42gupcjVz3cRAyUKZlPOOCZn/IeFgK', 'ChaeYoung', 0),
+(31, 'myforrever24@gmail.com', '$2y$10$GPU/4xQEJJjoFSxr4w0V4Oz8ueXXh5x5uG0u5hVWFoNfImOFouuoO', 'Lisa', 0),
+(36, 'cnghe22@gmail.com', '$2y$10$rk3v0U2Q3POouM29p.eQ3.VQwjEdR/t9WPfPp1pPX5FTE4WFRLzZS', 'phước nguyễn', 1),
+(39, 'cnghe33@gmail.com', '$2y$10$7i8fEkyOUProuNt.QN4JFOWl5f78HDYY5WL.wywRYzb7XJRODdl32', 'Phuoc Nguyen 2', 1),
+(41, 'cnghe44@gmail.com', '$2y$10$/vstEAbRyfyvMe43I5RbNOVFhLaNAXGHEeAnpIoVamJdb7/9wgSVC', 'Nguyen Tan Phuoc', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -266,6 +300,12 @@ INSERT INTO `users` (`id`, `email`, `password`, `fullname`, `used`, `born`, `deg
 --
 ALTER TABLE `active_account`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `chatbox`
+--
+ALTER TABLE `chatbox`
+  ADD PRIMARY KEY (`Iduser1`,`Iduser2`);
 
 --
 -- Chỉ mục cho bảng `comment`
@@ -329,13 +369,13 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT cho bảng `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT cho bảng `reset_password`
