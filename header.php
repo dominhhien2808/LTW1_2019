@@ -18,7 +18,7 @@
         <div class="search">
             <div class="full-search">
                 <div class="icon-logo">
-                    <a href="index.php"><i class="fas fa-apple-alt"></i></a>
+                    <a href="index.php"><i class="fas fa-home"></i></a>
                 </div>
                 <div class="text-search">
                     <input id = "txt_value" type="text" placeholder="Tìm kiếm">
