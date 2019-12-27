@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 26, 2019 lúc 09:10 AM
+-- Thời gian đã tạo: Th12 27, 2019 lúc 07:48 AM
 -- Phiên bản máy phục vụ: 10.4.10-MariaDB
 -- Phiên bản PHP: 7.1.33
 
@@ -120,7 +120,9 @@ CREATE TABLE `friends` (
 
 INSERT INTO `friends` (`user1Id`, `user2Id`, `createAt`) VALUES
 (28, 27, '2018-12-27 20:40:48'),
-(36, 28, '2019-12-26 13:51:43');
+(36, 28, '2019-12-26 13:51:43'),
+(39, 36, '2019-12-27 13:39:06'),
+(36, 39, '2019-12-27 13:38:25');
 
 -- --------------------------------------------------------
 
@@ -136,6 +138,31 @@ CREATE TABLE `messages` (
   `date_sent` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Đang đổ dữ liệu cho bảng `messages`
+--
+
+INSERT INTO `messages` (`id_msg`, `body`, `user_from`, `user_to`, `date_sent`) VALUES
+(19, 'dasdasd', 36, 12, '0000-00-00 00:00:00'),
+(20, 'dsadsadaaaaaaaaaaaaaaaaaa', 36, 12, '0000-00-00 00:00:00'),
+(42, 'Hello, How are you?', 36, 39, '2019-12-26 14:50:35'),
+(43, 'I\'m fine. Thank you and you?', 39, 36, '2019-12-26 14:50:53'),
+(44, 'Very Good!', 36, 39, '2019-12-26 14:51:03'),
+(45, 'Get out Bitch!', 39, 36, '2019-12-26 14:51:20'),
+(46, 'M&oacute;a', 36, 39, '2019-12-26 15:21:22'),
+(47, 'dsadasdsad', 36, 39, '2019-12-26 15:27:39'),
+(48, 'dasdsadsjadbjkbaskjdbasd', 36, 39, '2019-12-26 15:27:45'),
+(49, 'asdkjsajdbjksandkjnasdsad', 36, 39, '2019-12-26 15:27:48'),
+(50, 'dasdasdasdsad', 36, 39, '2019-12-26 16:30:13'),
+(51, 'dasdasdsdasdasdsdaweeads', 36, 39, '2019-12-26 16:30:19'),
+(52, 'dsadasdasdasdasdedcxzc', 36, 39, '2019-12-26 16:32:08'),
+(53, 'dwaddsd', 36, 39, '2019-12-26 16:32:14'),
+(54, 'sadasdasdsadasdasdsa', 36, 39, '2019-12-26 16:32:21'),
+(55, 'ditj me m', 39, 36, '2019-12-26 16:33:25'),
+(56, 'thang mat dai', 39, 36, '2019-12-26 16:33:36'),
+(57, 'xong rồi n&egrave;', 39, 36, '2019-12-27 06:26:42'),
+(58, 'okeeeeeeeeeeeeee', 36, 39, '2019-12-27 06:26:48');
+
 -- --------------------------------------------------------
 
 --
@@ -147,32 +174,19 @@ CREATE TABLE `posts` (
   `content` varchar(255) NOT NULL,
   `userId` int(11) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
-  `count` int(11) NOT NULL
+  `count` int(11) NOT NULL,
+  `quyen` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `posts`
 --
 
-INSERT INTO `posts` (`id`, `content`, `userId`, `createdAt`, `count`) VALUES
-(1, '123', 0, '2018-12-27 16:29:49', 0),
-(2, '123', 0, '2018-12-27 16:30:11', 0),
-(3, '123', 0, '2018-12-27 16:30:31', 0),
-(4, '123', 0, '2018-12-27 16:30:57', 0),
-(5, '123', 0, '2018-12-27 16:33:44', 0),
-(6, '123', 0, '2018-12-27 16:36:12', 0),
-(7, '123', 0, '2018-12-27 16:37:34', 0),
-(8, '123', 0, '2018-12-27 16:40:30', 0),
-(9, '123', 28, '2018-12-27 16:54:08', 0),
-(10, '456', 28, '2018-12-27 16:54:23', 0),
-(11, '123', 28, '2018-12-27 17:08:41', 0),
-(12, 'khoi mat lol', 28, '2018-12-27 17:09:52', 0),
-(13, 'khoi mat cac', 28, '2018-12-27 17:10:07', 0),
-(14, 'suc vat khoi', 28, '2018-12-27 17:10:18', 1),
-(15, '123ddd  ', 28, '2018-12-27 17:55:17', 0),
-(16, '123 456', 28, '2018-12-27 18:26:24', 1),
-(17, 'Tôi yêu em', 28, '2018-12-27 20:21:00', 6),
-(18, 'Bài đăng đầu tiên', 35, '2019-11-30 11:31:12', 3);
+INSERT INTO `posts` (`id`, `content`, `userId`, `createdAt`, `count`, `quyen`) VALUES
+(22, 'adasdsadsad', 36, '2019-12-27 13:14:36', 0, 1),
+(23, 'dasdasdsd', 36, '2019-12-27 13:15:03', 0, 2),
+(24, '', 36, '2019-12-27 13:15:16', 0, 3),
+(25, 'dasdasdsad', 36, '2019-12-27 13:38:06', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -309,13 +323,13 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT cho bảng `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `reset_password`
