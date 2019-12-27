@@ -107,7 +107,7 @@ $isFollowed = findRelationship($user['id'], $currentUser['id']);
 
                 </ul>
             </div>
-
+		  <a href="updateprofile.php"><button  class="button1"><span>thay đổi thông tin cá nhân</span></button></a>
         </div>
     </div>
 
