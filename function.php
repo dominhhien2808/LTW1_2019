@@ -147,6 +147,14 @@ require 'vendor/autoload.php';
 		$follow=$stmt -> fetchAll(PDO::FETCH_ASSOC);
 		return  $follow;
 	}
+	function findFollow($id1, $id2)
+	{
+		global $db;
+		$stmt = $db -> prepare("SELECT * FROM follow where users = ? and usersfollow = ?");
+		$stmt ->execute(array($id1, $id2));
+		$follow=$stmt -> fetchAll(PDO::FETCH_ASSOC);
+		return  $follow;
+	}
 
 	function addRelationship($user1Id,$user2Id) 
 	{
@@ -226,10 +234,10 @@ require 'vendor/autoload.php';
 		$posts = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 		return $posts;
 	}
-	function createPosts($content,$userId){
+	function createPosts($content,$userId,$quyen){
 		global $db;
-		$stmt = $db -> prepare("INSERT INTO posts(content,userId) VALUES (?,?) ");
-		$stmt ->execute(array($content,$userId));
+		$stmt = $db -> prepare("INSERT INTO posts(content,userId,quyen) VALUES (?,?,?) ");
+		$stmt ->execute(array($content,$userId,$quyen));
 		return $db-> lastInsertId();
 	}
 	function updateLikePost($id, $count) {
