@@ -13,6 +13,21 @@
 {
     display: block;
 }
+/* dich chuyen button*/
+button#btn-share-public {
+    transform: translateX(500px);
+}
+
+button#btn-share-friend {
+    transform: translateX(50%px);
+}
+
+button#btn-share-me {
+    transform: translateX(500px);
+}
+
+label#btn-submit {display: none;}
+/* dich chuyen button*/
 #label-post
 {
      border:1px solid ; 
