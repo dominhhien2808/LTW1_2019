@@ -3,7 +3,8 @@
 	require_once 'function.php';
 	//xu ly logic o day
 	$page = 'update_profile';
-	$user = findUserById($_GET['id']);
+	$user = findUserById($currentUser['id']);
+
 
 
 ?>
