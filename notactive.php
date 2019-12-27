@@ -10,5 +10,5 @@
     <link rel="stylesheet" href="style/hieuung.css">
 </head>
 <body>
-    <h1>Chúng tôi đã gửi 1 email về mail của bạn vui lòng kiểm tra hoặc click vào <a href=https://accounts.google.com">đây </a>để kích hoạt tài khoản.</h1>
+    <h1>Chúng tôi đã gửi 1 email về mail của bạn vui lòng kiểm tra hoặc click vào <a href=https://google.com">đây </a>để kích hoạt tài khoản.</h1>
 </body>
