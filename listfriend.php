@@ -2,8 +2,8 @@
 require_once 'init.php';
 require_once 'function.php';
 $page = 'listfriend';
-$user = findUserById($_GET['id']);
-$listfriend=getFriends($user["id"]);
+//$listfriend=getListFriends($user["id"]);
+$listUsers = GetListUser($currentUser['id']);
 
 if(!$currentUser)
 {
@@ -20,22 +20,26 @@ if(!$currentUser)
     <link rel="stylesheet" href="style/style-listfriend.css">
 </head>
 <?php
-    foreach($listfriend as $listfriend):
+    foreach($listUsers as $user):
     {
-        $userfriend =findUserById($listfriend);
-?>
+        $isFollowing = findRelationship($currentUser['id'], $user['id']);
+        $isFollowed = findRelationship($user['id'], $currentUser['id']); 
+        if ($isFollowed && $isFollowing) :
+        ?>
    
         <div class="contrainer">
             <div class="img-personal">
                 <div class="img">
-                    <img src="img/27.jpg" alt="Ảnh đại diện">
+                    <img src="img/<?php echo $user['id']?>.jpg" alt="Ảnh đại diện">
                 </div>
                 <div class="titleName">
-                    <h2><a href="http://localhost:81/DACKWEB/profile.php?id=<?php echo $userfriend['id'];?>"><?php echo $userfriend['fullname']; ?></a></h2>
+                    <h3>ID: <?php echo $user['id'];?> Tên:<?php echo $user['fullname']; ?></h2>
+                    <h4><a href=http://localhost/ltw1_2019/profile.php?id=<?php echo $user['id']?>>Thăm tường</a>
+                              <a href=http://localhost/ltw1_2019/chat.php?id=<?php echo $user['id']?>>Nhắn tin</a></h3>
                 </div>
             </div>
         </div>
-   
+        <?php endif?>
 <?php   
     }
 ?>

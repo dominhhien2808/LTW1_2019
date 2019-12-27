@@ -192,7 +192,7 @@ require 'vendor/autoload.php';
 		$stmt ->execute(array($idCurent,$idFollowed,$idFollowed,$idCurent));
 	}
 
-	function getFriends($userId)
+	function getListFriends($userId)
 	{
 		global $db;
 		$stmt=$db->prepare("SELECT f1.user2Id FROM friends AS f1 JOIN friends AS f2 ON f1.user2Id=f2.user1Id WHERE f1.user1Id=?");
@@ -204,6 +204,15 @@ require 'vendor/autoload.php';
 			$result[]=$row['user2Id'] ." ";
 		}
 		return $result; 
+	}
+
+	function GetListUser($id)
+	{
+		global $db;
+		$stmt=$db->prepare("SELECT * from users Where id != ?");
+		$stmt->execute(array($id));	
+		$result = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+		return $result;
 	}
 
 	function findAllOfFriends($userId)
