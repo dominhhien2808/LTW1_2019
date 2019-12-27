@@ -2,13 +2,10 @@
 	require_once 'init.php';
 	require_once 'function.php';
 	//xu ly logic o day
-	$page = 'index';
-	$posts = findAllPosts();
-	if(!$currentUser)
-    {
-        header('Location: log-sin.php');
-        exit(0);
-    }
+	$page = 'update_profile';
+	$user = findUserById($_GET['id']);
+
+
 ?>
 <?php include 'header.php'; ?>
 
@@ -21,11 +18,11 @@
 <?php endif; ?>
 <div class="container">
 	 <h1>Cập Nhập Thông Tin cho Tài Khoản:<?php echo $user['fullname']; ?></h1>
-	<form id="contactform" name="contact" method="post" action="#">
+	<form id="contactform" name="contact" method="POST" action="change.php">
   <p class="note"><span class="req"> <span class="req">*</span> Kiểm tra kĩ thông tin rồi mới Click Thay Đổi</p>
   <div class="row">
     <label for="name">Tên của bạn <span class="req">*</span></label>
-    <input value="<?php echo $user['fullname']; ?>" type="text" name="name" id="name" class="txt" tabindex="1" placeholder="<?php echo $user['fullname']; ?>" required>
+    <input value="<?php echo $user['fullname']; ?>" type="text" name="fullname" id="fullname" class="txt" tabindex="1" placeholder="<?php echo $user['fullname']; ?>" required>
   </div>
  
   <div class="row">
@@ -35,21 +32,21 @@
  
   <div class="row">
     <label for="subject">Ngày Tháng Năm Sinh <span class="req">*</span></label>
-    <input value="<?php echo $user['born']; ?>" type="text" name="subject" id="subject" class="txt" tabindex="3" >
+    <input value="<?php echo $user['born']; ?>" type="text" name="born" id="born" class="txt" tabindex="3" >
   </div>
   
   <div class="row">
-    <label for="subject">Trình Độ Học Vấn <span class="req">*</span></label>
-    <input value="<?php echo $user['degree']; ?>" type="text" name="subject" id="subject" class="txt" tabindex="3" >
+    <label >Trình Độ Học Vấn <span class="req">*</span></label>
+    <input value="<?php echo $user['degree']; ?>" type="text" name="degree" id="degree" class="txt" tabindex="3" >
   </div>
  
   <div class="row">
-    <label for="message">Chi Tiết bản thân </label>
-    <textarea value="<?php echo $user['detail']; ?>" name="message" id="message" class="txtarea" tabindex="4" required></textarea>
+    <label >Chi Tiết bản thân </label>
+     <input value="<?php echo $user['detail']; ?>" style="width: 500px"  type="text" name="detail" id="detail" class="txt" tabindex="4" >
   </div>
 
   <div class="center">
-    <input type="submit" id="submitbtn" name="submitbtn" tabindex="5" value="Thay Đổi thông tin  ">
+    <input type="submit"id="submitbtn" name="submitbtn" tabindex="5" value="Thay Đổi thông tin  ">
   </div>
 </form>
 </div>
