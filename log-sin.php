@@ -15,7 +15,7 @@
   <div class="_big">
         <div class="_left">
             <div class="_adv">
-                <span class="fa fa-search">
+                <span class="fa fa-heart">
                 </span>
                 <span>Theo dõi những sở thích của bạn</span>
             </div>
