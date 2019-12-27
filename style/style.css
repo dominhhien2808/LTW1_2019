@@ -137,6 +137,9 @@ header i{
     border-right:1px solid black;
 } 
 
+.nav-item{
+    padding-top:50px;
+}
 .out{
     padding:0 15px;
     position: relative;

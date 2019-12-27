@@ -1,6 +1,5 @@
 
-
-/* .posts
+.posts
 {
     width:613px ;
     height: 130px;
@@ -10,7 +9,10 @@
     background-color: #ecf0f1;
     border-radius: 5px;
 }
-
+#btn-share-public,#btn-share-me,#btn-share-friend
+{
+    display: block;
+}
 #label-post
 {
      border:1px solid ; 
@@ -55,10 +57,6 @@
     margin-left:400px;
 }
 
-#btn-share-public{
-    margin-left:290px;
-}
-
 .btn-post:hover
 {
     background-color: #bdc3c7;
@@ -66,7 +64,7 @@
 
 #btn-share-public,#btn-share-me,#btn-share-friend
 {
-    display: none;
+    display: block;
 }
 
 .box{
@@ -95,7 +93,7 @@
 .box p
 {
    margin-top:120px;
-} */
+} 
 
 
 #like

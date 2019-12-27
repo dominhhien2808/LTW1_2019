@@ -17,11 +17,15 @@
 
 <head>
 	<link rel="stylesheet" href="style/style-index.css">
+	<?php include 'header.php'; ?>
+
+<head>
+	<link rel="stylesheet" href="style/style-index.css">
 </head>
 <?php if(!$success) : ?>
-	<form action="posts.php" method="POST">
+	<form action="posts.php" method="POST" style="padding-top: 50px;padding-left:50px">
 	<div>
-		<textarea class="form-control" id="exampleFormControlTextarea1" cols="73" rows="3" name="content" placeholder="Bạn đang nghỉ gì?"></textarea>
+		<textarea class="form-control" id="exampleFormControlTextarea1" cols="73" rows="7" name="content" placeholder="Bạn đang nghĩ gì?"></textarea>
 	</div>
 		<button type="submit" class = " btn-post" id="btn-img" name="btn-img">Ảnh/video</button>
 		<label class ="btn-post" id="btn-submit">Chia sẻ</label>
