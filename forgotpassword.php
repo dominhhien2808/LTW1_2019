@@ -13,7 +13,7 @@
 		if($user)
 		{
            $secret = createResetPassWord($user['id']);
-           sendEmail($user['email'],$user['fullname'], 'Reset PassWord', 'Click <a href="http://localhost:81/DACKWEB/reset_password.php?secret=' . $secret .'">here</a> to reset password');
+           sendEmail($user['email'],$user['fullname'], 'Reset PassWord', 'Click <a href="http://localhost:80/demosocial/reset_password.php?secret=' . $secret .'">here</a> to reset password');
 		}
 		
 		
